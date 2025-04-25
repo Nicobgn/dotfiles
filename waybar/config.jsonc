@@ -1,0 +1,295 @@
+[
+  {
+    "output": "HDMI-A-1",
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "width": 1880,
+    "spacing": 1,
+    
+    "modules-left": [
+      "hyprland/workspaces",
+      "wlr/taskbar"
+      // "hyprland/submap"
+    ],
+    
+    "modules-center": [
+      "hyprland/window"
+    ],
+    
+    "modules-right": [
+      "custom/updates",
+      "custom/weather",
+      "group/screenshots",
+      "pulseaudio",
+      // "bluetooth",
+      // "network",
+      "clock",
+      "custom/powermenu"
+    ],
+
+    "hyprland/workspaces": {
+      "active-only": false,
+      "format": "{id}",
+      "format-icons": {
+        "urgent": "",
+        "active": "",
+        "default": ""
+      },
+      // "format-icons": {
+      //   "urgent": "",
+      //   "default": ""
+      // },
+      "persistent-workspaces": {
+        "*": 2
+      },
+      "window-rewrite-default": "",
+      "window-rewrite": {
+        "title<.*youtube.*>": "",
+        "title<.*reddit.*>": "",
+        "title<.*github.*>": "",
+        "class<discord>": "",
+        "class<Logseq>": ""
+      }
+    },
+
+    "hyprland/window": {
+      "format": "{title}",
+      "max-length": 45,
+      "separate-outputs": true,
+      "rewrite": {
+        "(.*) - Vivaldi": " $1",
+        "(.*) - NVIM": " $1",
+        "Spotify Free": "Spotify"
+      }
+    },
+
+    "clock": {
+      "interval": 1,
+      "format": " {:%H:%M:%S}",
+      "format-alt": " {:%d/%m/%Y}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+        "mode": "year",
+        "mode-mon-col": 4,
+        "weeks-pos": "right",
+        "on-scroll": 1,
+        "format": {
+          "months":   "<span color='#ffead3'><b>{}</b></span>",
+          "days":     "<span color='#ecc6d9'><b>{}</b></span>",
+          "weeks":    "<span color='#99ffdd'><b>W{}</b></span>",
+          "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+          "today":    "<span color='#ff6699'><b><u>{}</u></b></span>"
+        }
+      },
+      "timezone": "America/Argentina/Buenos_Aires"
+    },
+
+    "pulseaudio": {
+      "format": " {volume}%",
+      "format-bluetooth": " {volume}%",
+      "format-muted": "",
+      "format-icons": {
+        "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+        "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "phone-muted": "",
+        "portable": "",
+        "car": "",
+        "default": ["", ""]
+      },
+      "scroll-step": 1,
+      "on-click": "pavucontrol"
+    },
+
+    "wlr/taskbar": {
+      "format": "{icon}",
+      "tooltip-format": "{title}",
+      "icon-size": 20,
+      "on-click": "activate",
+      "on-click-middle": "close",
+      "ignore-list": [
+        "wezterm"
+      ]
+    },
+
+    "custom/weather": {
+      "exec": "${HOME}/.config/waybar/scripts/weather.sh Moron+Argentina",
+      "return-type": "json",
+      "format": "{}",
+      "tooltip": true,
+      "interval": 3600
+    },
+
+    "custom/updates": {
+      "format": " {}",
+      "tooltip-format": "{}",
+      "escape": true,
+      "return-type": "json",
+      "exec": "${HOME}/.config/waybar/scripts/updates.sh",
+      "on-click": "wezterm -e ${HOME}/.config/waybar/scripts/updater.sh",
+      "restart-interval": 60,
+      "tooltip": false
+    },
+
+    "custom/screenshot-wrapper": {
+      "format": "",
+      "tooltip-format": "Elige que deseas capturar"
+    },
+
+    "custom/full-screenshot": {
+      "format": "",
+      "on-click": "~/.local/bin/screenshot.sh fullscreen",
+      "tooltip-format": "Captura de Pantalla (Fullscreen)."
+    },
+
+    "custom/region-screenshot": {
+      "format": "",
+      "on-click": "~/.local/bin/screenshot.sh region",
+      "tooltip-format": "Captura de Pantalla (Elegir Region)."
+    },
+
+    "custom/window-screenshot": {
+      "format": "",
+      "on-click": "~/.local/bin/screenshot.sh window",
+      "tooltip-format": "Captura de Pantalla (Ventana activa)."
+    },
+    
+    "custom/powermenu": {
+      "format": "",
+      "on-click": "~/.config/rofi/scripts/powermenu_t2",
+      "tooltip-format": "Abrir el menu de apagado."
+    },
+
+    "group/screenshots": {
+      "orientation": "inherit",
+      "drawer": {
+        "transition-duration": 500,
+        "transition-left-to-right": false
+      },
+      "modules": [
+        "custom/screenshot-wrapper",
+        "custom/window-screenshot",
+        "custom/region-screenshot",
+        "custom/full-screenshot"
+      ]
+    },
+
+    // "custom/spotify": {
+    //   "format": "{icon} {}",
+    //   "escape": true,
+    //   "return-type": "json",
+    //   "max-length": 40,
+    //   "interval": 30, // Remove this if your script is endless and write in loop
+    //   "on-click": "playerctl -p spotify play-pause",
+    //   "on-click-right": "killall spotify",
+    //   "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+    //   "on-scroll-up" : "playerctl -p spotify next",
+    //   "on-scroll-down" : "playerctl -p spotify previous",
+    //   "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
+    //   "exec-if": "pgrep spotify"
+    // }
+  },
+  {
+    "output": "HDMI-A-1",
+    "layer": "top",
+    "position": "bottom",
+    "height": 20,
+    "width": 1880,
+    "spacing": 1,
+    
+    "modules-left": [],
+    
+    "modules-center": [
+      "group/hardware"
+    ],
+    
+    "modules-right": [
+      "custom/gpu-usage",
+      "group/temperatures"
+    ],
+
+    "group/hardware": {
+      "orientation": "horizontal",
+      "modules": [
+        "disk",
+        "cpu",
+        "memory"
+      ]
+    },
+
+    "cpu": {
+      "interval": 2,
+      "format": " {usage}%",
+      "format-alt": "{usage0}% {usage1}% {usage2}% {usage3}% {usage4}% {usage5}% {usage6}% {usage7}% {usage8}% {usage9}% {usage10}% {usage11}% {usage12}% {usage13}% {usage14}% {usage15}%",
+      "states": {
+        "warning": 60,
+        "critical": 90
+      },
+      "tooltip": true
+    },
+
+    "disk": {
+      "interval": 30,
+      "format": " {free}",
+      "unit": "GiB",
+      "states": {
+        "warning": 70,
+        "critical": 90
+      }
+    },
+
+    "memory": {
+      "interval": 2,
+      // "format": " {used} / {total}",
+      "format": " {avail} GiB",
+      "states": {
+        "warning": 70,
+        "critical": 90
+      }
+    },
+
+    "temperature#temp1": {
+      "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+      "interval": "5",
+      "format": " {temperatureC}°C",
+      "tooltip-format": "CPU Temperature {temperatureC}°C",
+      "critical-threshhold": 80
+    },
+
+    "temperature#temp2": {
+      "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+      "interval": "5",
+      "format": " {temperatureC}°C",
+      "tooltip-format": "GPU Temperature {temperatureC}°C",
+      "critical-threshhold": 80
+    },
+
+    "custom/gpu-usage": {
+      "exec": "cat /sys/class/hwmon/hwmon1/device/gpu_busy_percent",
+      "format": "GPU: {}%",
+      "return-type": "",
+      "interval": 1
+    },
+
+    "custom/temperature-drawer": {
+      "format": "",
+      "tooltip-format": "Alternar mostrar temperaturas",
+    },
+    
+    "group/temperatures": {
+      "orientation": "inherit",
+      // "drawer": {
+      //   "transition-duration": 500,
+      //   "transition-left-to-right": true
+      // },
+      "modules": [
+        "temperature#temp1",
+        "temperature#temp2"
+      ]
+    }
+  }
+]

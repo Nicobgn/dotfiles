@@ -1,0 +1,176 @@
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: "JetBrains Mono", "Font Awesome 6 Free";
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+window#waybar.top,
+window#waybar.bottom {
+  margin: 0;
+  padding: 0;
+}
+
+window#waybar.top > * {
+  margin: 10px 0 0;
+}
+window#waybar.bottom > * {
+  margin: 0 0 15px;
+}
+
+#workspaces {
+  background: rgba(48, 94, 160, 0.2);
+  border-radius: 20px;
+  padding: 5px 8px;
+}
+
+#workspaces button {
+  padding: 0 2px;
+  min-height: 0px;
+  /* min-width: 0px; */
+  border-radius: 100px;
+  background: rgba(48, 48, 48, 0.6);
+  color: #000;
+  margin: 0 4px;
+  transition: padding 300ms ease-out;
+}
+
+#workspaces button.active {
+  background: #305AAF;
+  padding: 0 15px;
+}
+
+#workspaces button.urgent {
+  background: #AC9F35;
+}
+
+#workspaces button:hover {
+  box-shadow: none;
+  border: 1px solid rgba(108, 44, 175, 1);
+}
+
+#window {
+  border: 2px solid rgba(48, 48, 128, 0.8);
+  background: rgba(30, 30, 30, 0.4);
+  color: #eee;
+  margin: 0 4px;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+window#waybar.empty #window {
+  background: transparent;
+  border: none;
+}
+
+#taskbar {
+  margin: 0 4px;
+}
+
+#taskbar.empty {
+  margin: 0;
+}
+
+#taskbar button {
+  margin: 0 4px;
+  opacity: 0.2;
+}
+
+#taskbar button:hover {
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+
+#taskbar button.active {
+  opacity: 1;
+}
+
+#disk,
+#cpu,
+#memory,
+#temperature.temp1,
+#temperature.temp2 {
+  background: rgba(48, 48, 48, 0.4);
+  border: 2px solid rgba(64, 31, 138, 0.4);
+  border-radius: 100px;
+  color: #eee;
+  margin: 0 4px;
+  padding: 5px 12px;
+}
+
+#custom-updates.warning,
+#custom-weather.warning,
+#cpu.warning,
+#disk.warning,
+#memory.warning {
+  background: rgba(241, 226, 115, 0.8);
+  color: #303030;
+}
+
+#custom-updates.critical,
+#custom-weather.critical,
+#cpu.critical,
+#disk.critical,
+#memory.critical,
+#temperature.temp1.critical,
+#temperature.temp2.critical {
+  background: rgba(226, 58, 58, 1);
+  color: #303030;
+}
+
+#pulseaudio.muted {
+  background: rgba(200, 81, 103, 0.8);
+}
+
+#clock,
+#pulseaudio,
+#custom-updates,
+#custom-weather,
+#screenshots,
+#custom-powermenu,
+#custom-gpu-usage{
+  margin: 0 4px;
+  padding: 0 8px;
+  background: rgba(48, 48, 48, 0.4);
+  border: 2px solid rgba(64, 31, 138, 0.4);
+  color: #eee;
+  border-radius: 20px;
+}
+
+#clock:hover,
+#pulseaudio:hover,
+#custom-updates:hover,
+#custom-weather:hover,
+#screenshots:hover,
+#custom-powermenu:hover {
+  background: rgba(48, 48, 48, 0.6);
+  border: 2px solid rgba(64, 31, 138, 0.7);
+}
+
+#screenshots #custom-full-screenshot,
+#screenshots #custom-region-screenshot,
+#screenshots #custom-window-screenshot {
+  padding: 0 8px;
+}
+
+#screenshots:hover #custom-screenshot-wrapper {
+  padding-left: 4px;
+  border-left: 3px solid rgba(64, 31, 138, 0.7);
+}
+
+#screenshots #custom-full-screenshot:hover ,
+#screenshots #custom-region-screenshot:hover ,
+#screenshots #custom-window-screenshot:hover {
+  background: rgba(80, 80, 80, 0.8);
+}
+
+#screenshots #custom-region-screenshot {
+  border-left: 3px solid rgba(64, 31, 138, 0.7);
+  border-right: 3px solid rgba(64, 31, 138, 0.7);
+}
