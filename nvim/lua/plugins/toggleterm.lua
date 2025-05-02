@@ -23,28 +23,35 @@ return {
       local terminals = {
         server = Terminal:new({
           direction = "horizontal",
-          -- close_on_exit = false,
+          close_on_exit = true,
           on_open = function(term)
             vim.api.nvim_buf_set_name(term.bufnr, "Server")
           end
         }),
         
-        vertical = Terminal:new({ 
-          direction = "vertical" 
+        horizontal = Terminal:new({ 
+          direction = "horizontal",
+          close_on_exit = true,
+          on_open = function(term)
+            vim.api.nvim_buf_set_name(term.bufnr, "Server")
+          end 
         }),
         
         float = Terminal:new({ 
+          close_on_exit = true,
           direction = "float" 
         }),
       }
 
       -- Bindings de teclas
       vim.api.nvim_set_keymap("n", "<A-1>", "<cmd>lua require'toggleterm_config'.terminals.server:toggle()<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<A-2>", "<cmd>lua require'toggleterm_config'.terminals.vertical:toggle()<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<A-3>", "<cmd>lua require'toggleterm_config'.terminals.float:toggle()<CR>", { noremap = true, silent = true })
       vim.api.nvim_set_keymap("t", "<A-1>", "<cmd>lua require'toggleterm_config'.terminals.server:toggle()<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("t", "<A-1>", "<cmd>lua require'toggleterm_config'.terminals.vertical:toggle()<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("t", "<A-1>", "<cmd>lua require'toggleterm_config'.terminals.float:toggle()<CR>", { noremap = true, silent = true })
+      
+      vim.api.nvim_set_keymap("n", "<A-2>", "<cmd>lua require'toggleterm_config'.terminals.horizontal:toggle()<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("t", "<A-2>", "<cmd>lua require'toggleterm_config'.terminals.horizontal:toggle()<CR>", { noremap = true, silent = true })
+      
+      vim.api.nvim_set_keymap("n", "<A-3>", "<cmd>lua require'toggleterm_config'.terminals.float:toggle()<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("t", "<A-3>", "<cmd>lua require'toggleterm_config'.terminals.float:toggle()<CR>", { noremap = true, silent = true })
 
       -- Exportar la tabla de terminales para que los mappings puedan acceder a ella
       package.loaded.toggleterm_config = { terminals = terminals }    

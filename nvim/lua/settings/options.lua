@@ -49,3 +49,4 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 
 vim.opt.clipboard = "unnamedplus"
+

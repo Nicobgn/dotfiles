@@ -20,6 +20,9 @@ return {
           -- auto_resize = true,
         },
       })
+
+      -- vim.api.nvim_set_var('nvim_tree_open_on_setup', 1)
+      -- vim.api.nvim_set_var('nvim_tree_split', 1)
     end,
   }
 }

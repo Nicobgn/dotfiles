@@ -19,15 +19,15 @@ return {
         -- detection_methods
         patterns = { 
           ".git", 
-          "_darcs", 
-          ".hg", 
-          ".bzr", 
-          ".svn", 
-          "Makefile", 
-          "package.json",
           "README.md",
-          "Cargo.toml",
-          "src"
+          -- "_darcs", 
+          -- ".hg", 
+          -- ".bzr", 
+          -- ".svn", 
+          -- "Makefile", 
+          -- "package.json",
+          -- "Cargo.toml",
+          -- "src"
         },
 
         -- Table of lsp clients to ignore by name

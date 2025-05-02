@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Cargar configuración básica
 require('settings.options')
 require('settings.keymaps')
+require('settings.diagnostics')
 
 -- vim.cmd('colorscheme default')
 
