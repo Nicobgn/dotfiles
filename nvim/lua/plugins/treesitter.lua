@@ -1,23 +1,34 @@
--- ~/.config/nvim/lua/plugins/treesitter.lua
-
 return {
-  {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    config = function()
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = { 
-          'rust', 'lua', 
-          'typescript', 'javascript', 'tsx', 'html', 'css', 'scss', 
-          'dockerfile', 'go', 'gomod', 'sql',
-          
-          'json', 'toml',
-          'hyprlang', 'properties', 'nginx',
-        },
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
-    end,
+  'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
+  dependencies = {
+    {
+      'windwp/nvim-ts-autotag',
+      config = function ()
+        require('nvim-ts-autotag').setup({
+          opts = {
+            enable_close = true,
+            enable_rename = true,
+            enable_close_on_slash = true
+          }
+        })
+      end
+    },
   },
+  config = function()
+    require('nvim-treesitter.configs').setup({
+      ensure_installed = {
+        'lua', 'rust', 'python', 'go', 'gomod',
+        'typescript', 'javascript',
+        'html', 'css', 'scss',
+        'json', 'sql', 'toml', 'properties',
+        'nginx',
+        'hyprlang',
+        'dockerfile',
+      },
+      highlight = { enable = true },
+      autotag = { enable = true },
+    })
+  end
 }
 
