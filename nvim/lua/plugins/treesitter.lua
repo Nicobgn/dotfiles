@@ -6,11 +6,9 @@ return {
       'windwp/nvim-ts-autotag',
       config = function ()
         require('nvim-ts-autotag').setup({
-          opts = {
-            enable_close = true,
-            enable_rename = true,
-            enable_close_on_slash = true
-          }
+          enable_close = true,
+          enable_rename = true,
+          enable_close_on_slash = true
         })
       end
     },
@@ -19,7 +17,7 @@ return {
     require('nvim-treesitter.configs').setup({
       ensure_installed = {
         'lua', 'rust', 'python', 'go', 'gomod',
-        'typescript', 'javascript',
+        'typescript', 'javascript', 'tsx', 'jsx',
         'html', 'css', 'scss',
         'json', 'sql', 'toml', 'properties',
         'nginx',

@@ -9,12 +9,12 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,calc,filebrowser,window";
-    show-icons:                 true;
-    display-drun:               " Apps";
-    display-calc:                " Calc";
-    display-filebrowser:        " Files";
-    display-window:             " Windows";
+	modi:                       "drun,filebrowser,window";
+    show-icons:               true;
+    display-drun:             " Apps";
+/*    display-calc:             " Calc"; */
+    display-filebrowser:      " Files";
+    display-window:           " Windows";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
 }

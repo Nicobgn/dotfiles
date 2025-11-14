@@ -17,8 +17,8 @@ return {
 
         -- All the patterns used to detect root dir, when **"pattern"** is in
         -- detection_methods
-        patterns = { 
-          ".git", 
+        patterns = {
+          ".git",
           "README.md",
           -- "_darcs", 
           -- ".hg", 
