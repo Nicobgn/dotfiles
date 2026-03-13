@@ -16,10 +16,9 @@ return {
         notification_title = "crates.nvim",
         curl_args = { "-sL", "--retry", "1" },
         max_parallel_requests = 80,
-        open_programs = { "xdg-open", "open" },
         expand_crate_moves_cursor = true,
         enable_update_available_warning = true,
-        on_attach = function(bufnr) end,
+        -- on_attach = function(bufnr) end,
         text = {
           searching = "   Searching",
           loading = "   Loading",
@@ -168,13 +167,13 @@ return {
           },
         },
         null_ls = {
-          enabled = true,
+          enabled = false,
           name = "crates.nvim",
         },
         lsp = {
           enabled = true,
           name = "crates.nvim",
-          on_attach = function(client, bufnr) end,
+          -- on_attach = function(client, bufnr) end,
           actions = false,
           completion = false,
           hover = false,
@@ -183,31 +182,72 @@ return {
     end,
   },
   {
-    'simrat39/rust-tools.nvim',
-    ft = 'rust',
+    'mrcjkb/rustaceanvim',
+    version = '^6',
+    ft = { 'rust' },
     dependencies = {
       'neovim/nvim-lspconfig',
-      'williamboman/mason-lspconfig.nvim',
+      'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      local rt = require('rust-tools')
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      rt.setup({
+      vim.g.rustaceanvim = {
         server = {
-          on_attach = function(_, bufnr)
-            vim.keymap.set('n', 'K', rt.hover_actions.hover_actions, { buffer = bufnr })
-            vim.keymap.set('n', '<Leader>ca', rt.code_action_group.code_action_group, { buffer = bufnr })
+          capabilities = capabilities,
+          on_attach = function(client, bufnr)
+            local opts = { buffer = bufnr }
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+            vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, opts)
+            vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, opts)
+
+            if client.server_capabilities.documentFormattingProvider then
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                group = vim.api.nvim_create_augroup('RustFormatOnSave', { clear = false }),
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format({
+                    async = false,
+                    bufnr = bufnr,
+                    filter = function(fmt_client)
+                      return fmt_client.name == 'rust_analyzer'
+                    end,
+                  })
+                end,
+              })
+            end
           end,
           settings = {
             ['rust-analyzer'] = {
-              cargo = { allFeatures = true },
-              checkOnSave = {
-                command = 'clippy'
-              }
-            }
-          }
-        }
-      })
-    end
+              cargo = {
+                allFeatures = true,
+              },
+              check = {
+                command = 'clippy',
+                allFeatures = true,
+              },
+              procMacro = {
+                enable = true,
+              },
+              inlayHints = {
+                bindingModeHints = {
+                  enable = true,
+                },
+                closureReturnTypeHints = {
+                  enable = 'always',
+                },
+                lifetimeElisionHints = {
+                  enable = 'skip_trivial',
+                  useParameterNames = true,
+                },
+              },
+            },
+          },
+        },
+      }
+    end,
   }
 }
+

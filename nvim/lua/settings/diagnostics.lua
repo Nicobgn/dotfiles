@@ -22,4 +22,3 @@ vim.diagnostic.config({
 --   end
 -- })
 
-
