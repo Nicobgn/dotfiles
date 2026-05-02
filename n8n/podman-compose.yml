@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: docker.io/library/postgres:18-alpine
+    container_name: n8n-postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - n8n_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - n8n_net
+
+  n8n:
+    image: docker.io/n8nio/n8n
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    env_file:
+      - .env
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - n8n_net
+
+  adminer:
+    image: docker.io/library/adminer
+    container_name: adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - n8n_net
+
+networks:
+  n8n_net:
+
+volumes:
+  n8n_data:
+  n8n_postgres_data:

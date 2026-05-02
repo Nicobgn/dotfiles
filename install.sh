@@ -1,6 +1,6 @@
 #!/bin/sh
 # Copy references to .config
-TO_REFERENCE="hypr,nvim,waybar,wezterm,dunst,fastfetch"
+TO_REFERENCE="hypr,nvim,waybar,wezterm,dunst,fastfetch,locale.conf,rofi"
 
 sudo pacman -Syu --noconfirm
 sudo pacman -S \
@@ -15,6 +15,7 @@ echo "Installing fonts"
 mkdir -p "$HOME/.local/share/fonts"
 sudo pacman -S --noconfirm --needed ttf-jetbrains-mono-nerd ttf-jetbrains-mono otf-font-awesome ttf-nerd-fonts-symbols  
 
+# Install configs
 for i in $(echo $TO_REFERENCE | tr "," "\n"); do
     if [ -d "$HOME/.config/$i" ]; then
         echo "Backing up existing $i config to $HOME/.config/${i}_backup"
@@ -24,7 +25,11 @@ for i in $(echo $TO_REFERENCE | tr "," "\n"); do
     ln -dsr "$(pwd)/$i" "$HOME/.config/$i"
 done
 
-# NVM 
+# Installing custom scripts
+mkdir -p "$HOME/.local/bin"
+ln -sr "$(pwd)/scripts/*" "$HOME/.local/bin/"
+
+echo "export PATH=\"$PATH:$HOME/.local/bin\"" >> "$HOME/.zshrc"
 
 # Yay
 sudo pacman -S --needed git base-devel

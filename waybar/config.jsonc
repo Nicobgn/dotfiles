@@ -6,17 +6,14 @@
     "height": 30,
     "width": 1880,
     "spacing": 1,
-    
     "modules-left": [
       "hyprland/workspaces",
       "wlr/taskbar"
       // "hyprland/submap"
     ],
-    
     "modules-center": [
       "hyprland/window"
     ],
-    
     "modules-right": [
       "custom/updates",
       "custom/weather",
@@ -27,7 +24,6 @@
       "clock",
       "custom/powermenu"
     ],
-
     "hyprland/workspaces": {
       "active-only": false,
       "format": "{id}",
@@ -52,7 +48,6 @@
         "class<Logseq>": ""
       }
     },
-
     "hyprland/window": {
       "format": "{title}",
       "max-length": 45,
@@ -63,7 +58,6 @@
         "Spotify Free": "Spotify"
       }
     },
-
     "clock": {
       "interval": 1,
       "format": " {:%H:%M:%S}",
@@ -75,16 +69,15 @@
         "weeks-pos": "right",
         "on-scroll": 1,
         "format": {
-          "months":   "<span color='#ffead3'><b>{}</b></span>",
-          "days":     "<span color='#ecc6d9'><b>{}</b></span>",
-          "weeks":    "<span color='#99ffdd'><b>W{}</b></span>",
+          "months": "<span color='#ffead3'><b>{}</b></span>",
+          "days": "<span color='#ecc6d9'><b>{}</b></span>",
+          "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
           "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-          "today":    "<span color='#ff6699'><b><u>{}</u></b></span>"
+          "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
         }
       },
       "timezone": "America/Argentina/Buenos_Aires"
     },
-
     "pulseaudio": {
       "format": " {volume}%",
       "format-bluetooth": " {volume}%",
@@ -99,12 +92,14 @@
         "phone-muted": "",
         "portable": "",
         "car": "",
-        "default": ["", ""]
+        "default": [
+          "",
+          ""
+        ]
       },
       "scroll-step": 1,
       "on-click": "pavucontrol"
     },
-
     "wlr/taskbar": {
       "format": "{icon}",
       "tooltip-format": "{title}",
@@ -115,7 +110,6 @@
         "wezterm"
       ]
     },
-
     "custom/weather": {
       "exec": "${HOME}/.config/waybar/scripts/weather.sh Moron+Argentina",
       "return-type": "json",
@@ -123,7 +117,6 @@
       "tooltip": true,
       "interval": 3600
     },
-
     "custom/updates": {
       "format": " {}",
       "tooltip-format": "{}",
@@ -134,36 +127,30 @@
       "restart-interval": 60,
       "tooltip": false
     },
-
     "custom/screenshot-wrapper": {
       "format": "",
       "tooltip-format": "Elige que deseas capturar"
     },
-
     "custom/full-screenshot": {
       "format": "",
-      "on-click": "~/.local/bin/screenshot.sh fullscreen",
+      "on-click": "~/.local/bin/screenshot_w.sh fullscreen",
       "tooltip-format": "Captura de Pantalla (Fullscreen)."
     },
-
     "custom/region-screenshot": {
       "format": "",
-      "on-click": "~/.local/bin/screenshot.sh region",
+      "on-click": "~/.local/bin/screenshot_w.sh region",
       "tooltip-format": "Captura de Pantalla (Elegir Region)."
     },
-
     "custom/window-screenshot": {
       "format": "",
-      "on-click": "~/.local/bin/screenshot.sh window",
+      "on-click": "~/.local/bin/screenshot_w.sh window",
       "tooltip-format": "Captura de Pantalla (Ventana activa)."
     },
-    
     "custom/powermenu": {
       "format": "",
       "on-click": "~/.config/rofi/scripts/powermenu_t2",
       "tooltip-format": "Abrir el menu de apagado."
     },
-
     "group/screenshots": {
       "orientation": "inherit",
       "drawer": {
@@ -177,7 +164,6 @@
         "custom/full-screenshot"
       ]
     },
-
     // "custom/spotify": {
     //   "format": "{icon} {}",
     //   "escape": true,
@@ -200,18 +186,14 @@
     "height": 20,
     "width": 1880,
     "spacing": 1,
-    
     "modules-left": [],
-    
     "modules-center": [
       "group/hardware"
     ],
-    
     "modules-right": [
       "custom/gpu-usage",
       "group/temperatures"
     ],
-
     "group/hardware": {
       "orientation": "horizontal",
       "modules": [
@@ -220,7 +202,6 @@
         "memory"
       ]
     },
-
     "cpu": {
       "interval": 2,
       "format": " {usage}%",
@@ -231,7 +212,6 @@
       },
       "tooltip": true
     },
-
     "disk": {
       "interval": 30,
       "format": " {free}",
@@ -241,7 +221,6 @@
         "critical": 90
       }
     },
-
     "memory": {
       "interval": 2,
       // "format": " {used} / {total}",
@@ -251,7 +230,6 @@
         "critical": 90
       }
     },
-
     "temperature#temp1": {
       "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
       "interval": "5",
@@ -259,7 +237,6 @@
       "tooltip-format": "CPU Temperature {temperatureC}°C",
       "critical-threshhold": 80
     },
-
     "temperature#temp2": {
       "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
       "interval": "5",
@@ -267,19 +244,16 @@
       "tooltip-format": "GPU Temperature {temperatureC}°C",
       "critical-threshhold": 80
     },
-
     "custom/gpu-usage": {
       "exec": "cat /sys/class/hwmon/hwmon1/device/gpu_busy_percent",
       "format": "GPU: {}%",
       "return-type": "",
       "interval": 1
     },
-
     "custom/temperature-drawer": {
       "format": "",
       "tooltip-format": "Alternar mostrar temperaturas",
     },
-    
     "group/temperatures": {
       "orientation": "inherit",
       // "drawer": {
