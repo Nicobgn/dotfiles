@@ -2,8 +2,9 @@
 
 set -e
 
-COMPOSE_FILE="podman-compose.yml"
-ENV_FILE=".env"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+COMPOSE_FILE="$SCRIPT_DIR/podman-compose.yml"
+ENV_FILE="$SCRIPT_DIR/.env"
 
 echo "🚀 Levantando n8n + PostgreSQL + Adminer..."
 
@@ -30,3 +31,4 @@ echo ""
 echo "✅ Servicios levantados:"
 echo "   → n8n:     http://localhost:5678"
 echo "   → Adminer: http://localhost:8080"
+
